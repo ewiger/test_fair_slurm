@@ -30,3 +30,39 @@ An cut out of parameters:
     PriorityUsageResetPeriod=NONE
 
 More info on the fair-share plugin configuration: <http://slurm.schedmd.com/priority_multifactor.html#fairshare>
+
+
+## Accounting
+
+
+```
+ubuntu@frontend001:~$ sacctmgr add account test1,test2
+ Adding Account(s)
+  test1
+  test2
+ Settings
+  Description     = Account Name
+  Organization    = Parent/Account Name
+ Associations
+  A = test1      C = gc3cluster
+  A = test2      C = gc3cluster
+ Problem adding accounts: Access/permission denied
+ubuntu@frontend001:~$ sacctmgr show Account
+   Account                Descr                  Org 
+---------- -------------------- -------------------- 
+       gc3                  gc3                  gc3 
+      root default root account                 root 
+ubuntu@frontend001:~$ sudo sacctmgr add account test1,test2
+ Adding Account(s)
+  test1
+  test2
+ Settings
+  Description     = Account Name
+  Organization    = Parent/Account Name
+ Associations
+  A = test1      C = gc3cluster
+  A = test2      C = gc3cluster
+Would you like to commit changes? (You have 30 seconds to decide)
+(N/y): y
+
+```
