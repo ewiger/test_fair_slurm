@@ -32,6 +32,8 @@ An cut out of parameters:
 More info on the fair-share plugin configuration: <http://slurm.schedmd.com/priority_multifactor.html#fairshare>
 
 
+See **slurm.conf** for details.
+
 ## Accounting
 
 
@@ -65,4 +67,29 @@ ubuntu@frontend001:~$ sudo sacctmgr add account test1,test2
 Would you like to commit changes? (You have 30 seconds to decide)
 (N/y): y
 
+```
+
+
+Correct command for coupling slurm account with user entity is: 
+
+```
+sudo sacctmgr add account test2
+sudo sacctmgr add User ubuntu Account=test2
+```
+
+
+One can use commands like `sshare` `sprio` `sacct` to monitor the priority for the jobs.
+
+Also see [1](https://www.hpc2n.umu.se/batchsystem/policies/abisko) and [2](http://slurm.schedmd.com/priority_multifactor.html)
+
+```
+Job_priority =
+	(PriorityWeightAge) * (age_factor) +
+	(PriorityWeightFairshare) * (fair-share_factor) +
+	(PriorityWeightJobSize) * (job_size_factor) +
+	(PriorityWeightPartition) * (partition_factor) +
+	(PriorityWeightQOS) * (QOS_factor) +
+	SUM(TRES_weight_cpu * TRES_factor_cpu,
+	    TRES_weight_<type> * TRES_factor_<type>,
+	    ...)
 ```
